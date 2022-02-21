@@ -1,0 +1,12 @@
+{
+  "T1": {
+    "date": "2021-06-09",
+    "merchant_code": "amy inc",
+    "amount_cents": 7326
+  },
+  "T2": {
+    "date": "2021-06-10",
+    "merchant_code": "amy inc",
+    "amount_cents": 1321
+  }
+}
