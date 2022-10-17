@@ -19,7 +19,8 @@ def calculate_rewards() -> None:
     transaction_system = TransactionSystem(input_path)
     total_per_merchant = transaction_system.get_total_per_merchant()
     reward_system = RewardsSystem(total_per_merchant)
-    reward_system.apply_all_rules()
+    rule_ids = [1, 2, 4, 6, 7] # Got rid of rule 3 and 5 since applying rule 6 will give more points
+    reward_system.apply_all_rules_brute_force(rule_ids)
 
 
 if __name__ == '__main__':

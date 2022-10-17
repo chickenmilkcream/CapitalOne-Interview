@@ -6,8 +6,9 @@ Date: February 4th, 2022
 """
 import os.path
 from datetime import datetime
-from typing import List, Dict
+from typing import List, DefaultDict
 from transaction import Transaction
+from collections import defaultdict
 import json
 
 
@@ -46,19 +47,19 @@ class TransactionSystem:
             # Converts cents to dollars
             transaction["amount"] = transaction["amount_cents"] / 100
             transactions_list.append(Transaction(transaction))
+
+        f.close()
+
         return transactions_list
 
-    def get_total_per_merchant(self) -> Dict[str, float]:
+    def get_total_per_merchant(self) -> DefaultDict[str, float]:
         """
         Return a dictionary of the total amount spent per merchant.
         """
-        total_per_merchant = {}
+        total_per_merchant = defaultdict(int)
         for transaction in self.transactions_list:
             merchant = transaction.merchant_code
             amount = transaction.amount
-            if merchant not in total_per_merchant:
-                total_per_merchant[merchant] = amount
-            else:
-                total_per_merchant[merchant] += amount
+            total_per_merchant[merchant] += amount
 
         return total_per_merchant
